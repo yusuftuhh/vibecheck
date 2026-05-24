@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Type checkers
+.mypy_cache/
+.ruff_cache/
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+*.bak
+
+# Local notes, prompts, drafts that should never ship
+notes/
+drafts/
+prompts/
+scratch/
+playground/
+sandbox/
+TODO.md
+NOTES.md
+PROMPTS.md
+PLAN.md
+
+# AI assistant artifacts (local only)
+.claude/
+.aider*
+.cursor/
+.cursorrules
+.continue/
+.superpowers/
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+COPILOT.md
+docs/superpowers/
+docs/internal/
+docs/planning/
+
+# Tool runtime state
+~/.cache/vibecheck/
+.vibecheck-cache/
