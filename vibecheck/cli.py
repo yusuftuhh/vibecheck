@@ -45,6 +45,23 @@ def _scan_targets(targets: list, client: GitHubClient, config) -> list[Finding]:
     return findings
 
 
+def _target_label(t) -> str:
+    """Render a Target as a short user-friendly string for the report header."""
+    if isinstance(t, LocalRepoTarget):
+        return t.path.name or str(t.path)
+    if isinstance(t, RemoteRepoTarget):
+        return f"{t.owner}/{t.repo}"
+    if isinstance(t, ProfileTarget):
+        return t.user
+    if isinstance(t, IssueTarget):
+        return f"{t.owner}/{t.repo}#{t.number}"
+    if isinstance(t, PullRequestTarget):
+        return f"{t.owner}/{t.repo}!{t.number}"
+    if isinstance(t, GistTarget):
+        return f"gist:{t.gist_id}"
+    return str(t)
+
+
 def _apply_fix(finding: Finding, client: GitHubClient) -> None:
     if finding.fixer == "file_replace":
         apply_file_fix(finding)
@@ -106,10 +123,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Applied {len(selected_ids)} fixes.")
         return 0
 
+    labels = [_target_label(t) for t in targets]
     if args.json:
-        print(render_json(findings, [str(t) for t in targets]))
+        print(render_json(findings, labels))
     else:
-        render_human(findings, [str(t) for t in targets])
+        render_human(findings, labels)
 
     return 0
 

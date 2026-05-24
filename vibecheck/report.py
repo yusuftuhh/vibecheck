@@ -42,8 +42,8 @@ def render_human(findings: list[Finding], scan_targets: list[str]) -> None:
         color = severity_colors[sev]
         _console.print(f"[{color}]{sev.upper()} ({len(bucket)} findings)[/{color}]")
         for f in bucket:
-            _console.print(f"  [bold]{f.id}[/bold]  {f.category:18}  {f.source}")
-            _console.print(f"            [{color}]{f.snippet}[/{color}]")
+            _console.print(f"  [bold]{f.id}[/bold]  {f.category:17} {f.source}")
+            _console.print(f"            [{color}]\"{f.snippet}\"[/{color}]")
             _console.print(f"            -> {f.suggested_fix}")
             _console.print()
 
